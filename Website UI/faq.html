@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        .search-bar {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 90%;
+        }
+        .faq-item {
+            max-width: 700px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            cursor: pointer;
+        }
+        .faq-item h2 {
+            color: #4caf50;
+            font-size: 18px;
+            margin: 0;
+        }
+        .faq-item p {
+            display: none;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .faq-item.active p {
+            display: block;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+    </header>
+    <main>
+        <input type="text" class="search-bar" id="faqSearch" placeholder="🔍 Search FAQs...">
+
+        <div class="faq-item">
+            <h2> How often should I water my plants?</h2>
+            <p>Most indoor plants need watering once a week. However, succulents and cacti require less frequent watering.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2> What type of light is best for plants?</h2>
+            <p>Different plants have different light requirements. Some thrive in direct sunlight, while others need shade.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2> Why are my plant’s leaves turning yellow?</h2>
+            <p>Yellow leaves can be caused by overwatering, underwatering, or nutrient deficiencies.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2> What is the best soil for indoor plants?</h2>
+            <p>Indoor plants thrive in well-draining soil mixed with organic compost.</p>
+        </div>
+    </main>
+    <!--<a href="templates\index.html">Back to Home</a>-->
+    <a href="{{ url_for('home') }}">⬅ Back to Home</a>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const faqs = document.querySelectorAll(".faq-item");
+
+            // Toggle FAQ answers on click
+            faqs.forEach(faq => {
+                faq.addEventListener("click", () => {
+                    faq.classList.toggle("active");
+                });
+            });
+
+            // FAQ Search Functionality
+            document.getElementById("faqSearch").addEventListener("keyup", function () {
+                let searchQuery = this.value.toLowerCase();
+                faqs.forEach(faq => {
+                    let question = faq.querySelector("h2").textContent.toLowerCase();
+                    if (question.includes(searchQuery)) {
+                        faq.style.display = "block";
+                    } else {
+                        faq.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

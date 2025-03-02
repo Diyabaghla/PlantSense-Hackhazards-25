@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantSense Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        .blog-post {
+            max-width: 700px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h2 {
+            color: #4caf50;
+        }
+        p {
+            line-height: 1.6;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PlantSense Blog</h1>
+    </header>
+    <main>
+        <div class="blog-post">
+            <h2>🌿 How to Keep Your Plants Healthy</h2>
+            <p>Taking care of plants requires understanding their needs. From proper watering techniques to ideal lighting conditions, this guide covers everything to keep your plants thriving.</p>
+            <p>💧 <b>Watering Tips:</b> Overwatering is a common mistake! Always check the soil before adding more water.</p>
+            <p>☀️ <b>Sunlight Needs:</b> Some plants love full sun, while others thrive in shade. Research your plant’s requirements.</p>
+            <p>🌱 <b>Fertilization:</b> Use organic compost or fertilizers every few weeks to maintain plant nutrition.</p>
+        </div>
+
+        <div class="blog-post">
+            <h2>🌾 The Benefits of Indoor Plants</h2>
+            <p>Indoor plants improve air quality, reduce stress, and enhance productivity. Discover the best plants for your home and office.</p>
+        </div>
+    </main>
+    <a href="{{ url_for('home') }}">⬅ Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Analyzer - AI Plant Health Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        .features, .how-it-works, .benefits {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 Plant Analyzer - AI Health Checker</h1>
+    </header>
+
+    <main>
+        <p>🔍 Analyze your plant's health with AI-powered insights.</p>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h2>✨ Features</h2>
+            <ul>
+                <li>📸 **Upload an Image** – Snap a photo of your plant.</li>
+                <li>🧠 **AI-Powered Diagnosis** – Detect diseases, nutrient deficiencies, and growth issues.</li>
+                <li>📊 **Instant Results** – Get real-time feedback on your plant’s health.</li>
+                <li>🌱 **Care Recommendations** – Learn how to keep your plants thriving.</li>
+            </ul>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="how-it-works">
+            <h2>🛠 How It Works</h2>
+            <ol>
+                <li>📷 **Step 1:** Upload a clear image of your plant.</li>
+                <li>🖥️ **Step 2:** Our AI analyzes the plant’s leaves, color, and structure.</li>
+                <li>📋 **Step 3:** Receive a detailed health report with recommendations.</li>
+            </ol>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="benefits">
+            <h2>🌍 Why Use Plant Analyzer?</h2>
+            <ul>
+                <li>✔ **Early Disease Detection** – Prevent major plant issues.</li>
+                <li>✔ **Save Time & Money** – No need for costly expert consultations.</li>
+                <li>✔ **Improve Gardening Skills** – Learn how to care for plants effectively.</li>
+            </ul>
+        </div>
+
+        <!-- Call to Action -->
+        <!--<a href="index.html">⬅ Back to Home</a>-->
+        <a href="{{ url_for('home') }}">⬅ Back to Home</a>
+
+    </main>
+</body>
+</html>

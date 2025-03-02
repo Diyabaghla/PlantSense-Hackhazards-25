@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #eef7e5;
+            color: #333;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        .team-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .member {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+        a:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Team</h1>
+    </header>
+    <main>
+        <div class="team-container">
+            <p>Our passionate team is dedicated to revolutionizing plant care through AI-driven technology.</p>
+            <div class="member">
+                <h3>Dr. Emily Green - Lead Botanist</h3>
+                <p>Emily has 15 years of experience in plant biology and is responsible for ensuring our plant analysis is scientifically accurate.</p>
+            </div>
+            <div class="member">
+                <h3>Mark Johnson - AI Developer</h3>
+                <p>Mark specializes in machine learning and computer vision, making our AI plant analyzer possible.</p>
+            </div>
+            <div class="member">
+                <h3>Sarah Lee - UI/UX Designer</h3>
+                <p>Sarah creates a seamless and beautiful interface for users to easily access plant insights.</p>
+            </div>
+        </div>
+    </main>
+    <!--<a href="templates\index.html">Back to Home</a>-->
+    <a href="{{ url_for('home') }}">⬅ Back to Home</a>
+
+</body>
+</html>

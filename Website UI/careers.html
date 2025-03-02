@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #eaf5dc;
+            color: #333;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        .career-list {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .job {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+        a:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Careers</h1>
+    </header>
+    <main>
+        <p>We are always looking for passionate individuals to join our team. Check out our current job openings:</p>
+        <div class="career-list">
+            <div class="job">
+                <h3>Software Engineer</h3>
+                <p>Develop and optimize AI models for plant health analysis.</p>
+            </div>
+            <div class="job">
+                <h3>Botanist</h3>
+                <p>Help refine our plant care recommendations with scientific accuracy.</p>
+            </div>
+            <div class="job">
+                <h3>Marketing Specialist</h3>
+                <p>Drive awareness and engagement for our platform through creative campaigns.</p>
+            </div>
+        </div>
+    </main>
+    <!--<a href="templates\index.html">Back to Home</a>-->
+    <a href="{{ url_for('home') }}">⬅ Back to Home</a>
+
+</body>
+</html>

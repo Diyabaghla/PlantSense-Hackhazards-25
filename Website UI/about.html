@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f0f8e7;
+            color: #333;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        .content {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+        a:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+    <main>
+        <div class="content">
+            <p><strong>Welcome to PlantSense!</strong> We are dedicated to helping plant enthusiasts keep their plants healthy using AI-powered insights.</p>
+            <p>Our mission is to make plant care accessible and enjoyable for everyone, whether you're a beginner or an experienced gardener.</p>
+            <p>PlantSense provides real-time plant health analysis, disease detection, and care recommendations based on AI technology.</p>
+            <p>Our team consists of plant experts, AI engineers, and designers who work together to create an intuitive and effective platform.</p>
+        </div>
+    </main>
+    <!--<a href="index.html">Back to Home</a>-->
+    <a href="{{ url_for('home') }}">⬅ Back to Home</a>
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantSense | AI Plant Health Analyzer</title>
+<!-- <link rel="stylesheet" href="style.css">-->
+
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>PlantSense</h1>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+           <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('analyzer') }}">Analyzer</a></li>
+                <li><a href="#plant-library-preview">Plant Library</a></li>
+                <li><a href="{{ url_for('forum') }}">Community</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+           <!-- Navigation Buttons -->
+           <div class="nav-cta">
+            <button class="btn-secondary">Login</button>
+            <button class="btn-primary">Sign Up</button>
+        </div>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <button class="btn-primary">Login</button>
+            </div>
+        </div>
+
+        <!-- Signup Modal -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Sign Up</h2>
+                <input type="text" placeholder="Username">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button class="btn-primary">Sign Up</button>
+            </div>
+        </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Diagnose Your Plants With AI</h1>
+                <p>Upload a photo of your plant and our machine learning algorithm will analyze its health, identify diseases, and provide care recommendations.</p>
+                <div class="hero-cta">
+                    <button class="btn-primary btn-large">
+                            <a href="#upload-section">
+                        <i class="fas fa-camera"></i> Analyze Your Plant</a>
+                    </button>
+                    <button class="btn-secondary btn-large">
+                        <a href="#plant-library-preview">
+                        <i class="fas fa-book"></i> Browse Plant Library</a>
+                    </button>
+                    <button class="chat-bubble">
+                        <a href="#chatbot">
+                        <i class="fas fa-comments" onclick="f1()"></i> AI Assistant</a>
+                    </button>
+                </div>
+            </div>
+            <script>
+            function f1() {
+    // Define the two URLs
+    const urls = ["http://127.0.0.1:5000/", "http://192.168.30.41:5001/"];
+
+    // Open the first URL in a new tab
+    window.open(urls[0], "_blank");
+
+    // Optionally, you can also open the second URL after a delay
+    setTimeout(() => {
+        window.open(urls[1], "_blank");
+    }, 1000); // Opens the second link after 1 second
+}
+</script>
+            <div class="hero-image">
+<!--                <img src="images/background 2.jpg" alt="Plant analysis visualization">-->
+                 <img src="{{ url_for('static', filename='images/background 2.jpg') }}" alt="Plant analysis visualization">
+                <div class="floating-badge">
+                    <span>Powered by</span>
+                    <strong>AI</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>How It Works</h2>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload</h3>
+                    <p>Take a clear photo of your plant's leaves.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Analyze</h3>
+                    <p>Our ML algorithm scans the image and compares it with thousands of plant conditions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Diagnose</h3>
+                    <p>Receive an accurate diagnosis with confidence score and identification details.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <h3>Treat</h3>
+                    <p>Get personalized care recommendations and treatment options for your plant.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="upload-section" id="upload-section">
+            <div class="upload-container">
+                <h2>Quick Plant Analysis</h2>
+                <p>Drop your image here or click to upload</p>
+                <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+                    <div class="upload-area" onclick="document.getElementById('plant-image').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & Drop or Click to Upload</p>
+                        <input type="file" id="plant-image" name="file" accept="image/*" required hidden onchange="previewImage(event)">
+                    </div>
+                    <button type="submit" class="btn-primary btn-large analyze-btn">
+                        <i class="fas fa-microscope"></i> Analyze
+                    </button>
+                </form>
+                <div class="image-preview" id="image-preview"></div>
+            </div>
+            <div class="sample-results">
+                <h3>Sample Analysis</h3>
+                <div class="result-card">
+                    <div class="result-image">
+<!--                        <img src="images/tomato plant 2.jpg" alt="Sample leaf">-->
+                        <img src="{{ url_for('static', filename='images/tomato plant 2.jpg') }}" alt="Sample leaf">
+                    </div>
+                    <div class="result-details">
+                        <div class="result-header">
+                            <h4>Tomato Plant</h4>
+                            <span class="health-indicator healthy">Healthy</span>
+                        </div>
+                        <div class="result-info">
+                            <p><strong>Confidence:</strong> 98%</p>
+                            <p><strong>Analysis:</strong> Leaf structure and coloration normal</p>
+                            <p><strong>Recommendation:</strong> Continue regular watering schedule</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+        function previewImage(event) {
+            let imagePreview = document.getElementById('image-preview');
+            imagePreview.innerHTML = '';
+
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    imgElement.style.maxWidth = '100%';
+                    imgElement.style.borderRadius = '10px';
+                    imagePreview.appendChild(imgElement);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        </script>
+
+        <section class="plant-library-preview" id="plant-library-preview">
+            <div class="section-header">
+                <h2>Plant Library</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="plant-categories">
+                <div class="category" onclick="showInfo('indoor')">
+                    <div class="category-image">
+<!--                        <img src="images/indoor plants.avif" alt="Indoor plants">-->
+                        <img src="{{ url_for('static', filename='images/indoor plants.avif') }}" alt="Indoor plants">
+
+                    </div>
+                    <h3>Indoor Plants</h3>
+                </div>
+                <div class="category" onclick="showInfo('vegetable')">
+                    <div class="category-image">
+<!--                        <img src="images/vegetable plants.jpg" alt="Vegetables">-->
+                        <img src="{{ url_for('static', filename='images/vegetable plants.jpg') }}" alt="Vegetables">
+                    </div>
+                    <h3>Vegetables</h3>
+                    <script>
+    function showInfo(category) {
+        alert("Category: " + category);
+        // You can also make an AJAX request to Flask here if needed
+    }
+</script>
+                </div>
+                <div class="category" onclick="showInfo('fruit')">
+                    <div class="category-image">
+<!--                        <img src="images/fruit plants.jpg" alt="Fruits">-->
+                        <img src="{{ url_for('static', filename='images/fruit plants.jpg') }}" alt="Fruits">
+
+                    </div>
+                    <h3>Fruits</h3>
+                </div>
+                <div class="category" onclick="showInfo('succulent')">
+                    <div class="category-image">
+<!--                        <img src="images/Succulents plants.jpeg" alt="Succulents">-->
+                        <img src="{{ url_for('static', filename='images/Succulents plants.jpeg') }}" alt="Succulents plants">
+                    </div>
+                    <h3>Succulents</h3>
+                </div>
+                <div class="category" onclick="showInfo('flowering')">
+                    <div class="category-image">
+<!--                        <img src="images/flowering plants.jpeg" alt="Flowering plants">-->
+                        <img src="{{ url_for('static', filename='images/flowering plants.jpeg') }}" alt="Flowering plants">
+                    </div>
+                    <h3>Flowering</h3>
+                </div>
+            </div>
+
+            <!-- Information Display Section -->
+            <!-- Make sure this section is inside the plant-library-preview section -->
+            <div id="plant-info" class="plant-info hidden">
+                <h2 id="plant-title"></h2>
+                <p id="plant-description"></p>
+                <button onclick="hideInfo()" class="btn-secondary">Close</button>
+            </div>
+        </section>
+
+
+        <section class="testimonials">
+            <h2>What Plant Lovers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>PlantSense helped me identify a fungal infection in my orchids before it spread to my entire collection. The treatment recommendations were spot on!</p>
+                    </div>
+                    <div class="author">
+                        <div class="author-image">
+<!--                            <img src="images/review 1.webp" alt="User avatar">-->
+                            <img src="{{ url_for('static', filename='images/review 1.webp') }}" alt="User avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sania Mittal</h4>
+                            <p>Plant Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>Incredible app! I diagnosed my tomato plants early and saved my entire garden. Highly recommend it!</p>
+                    </div>
+                    <div class="author">
+                        <div class="author-image">
+<!--                            <img src="images/review 2.webp" alt="User avatar">-->
+                            <img src="{{ url_for('static', filename='images/review 2.webp') }}" alt="User avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Rahul Sharma</h4>
+                            <p>Home Gardener</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>The AI accuracy is amazing! It detected early-stage leaf rot on my roses, and the treatment advice worked wonders.</p>
+                    </div>
+                    <div class="author">
+                        <div class="author-image">
+<!--                            <img src="images/review 3.jpeg" alt="User avatar">-->
+                             <img src="{{ url_for('static', filename='images/review 3.webp') }}" alt="User avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emily Johnson</h4>
+                            <p>Botany Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="prev-btn" aria-label="Previous Slide" title="Previous Slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="slider-indicators">
+                    <span class="active" data-slide="0"></span>
+                    <span data-slide="1"></span>
+                    <span data-slide="2"></span>
+                </div>
+
+                <button class="next-btn" aria-label="Next Slide" title="Next Slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h2>Join Our Plant Community</h2>
+                <p>Subscribe to receive plant care tips, disease alerts, and early access to new features.</p>
+                <form id="newsletterForm">
+                    <input type="email" id="emailInput" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="plant-decoration">
+                <i class="fas fa-seedling"></i>
+            </div>
+        </section>
+
+        <!-- Chatbot Container - Add this to your index.html before the </main> tag -->
+
+
+
+
+    <div class="chatbot-container">
+        <div id="chat-container">
+            <div id="chat-header">
+                <i class="fas fa-leaf"></i> PlantSense AI Assistant
+            </div>
+            <div id="chat-box"></div>
+            <div id="input-area">
+                <input type="text" id="user-input" placeholder="Ask about plant diseases..." autofocus>
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+        <button id="scrollToTopBtn" onclick="scrollToTop()">&#11014;</button>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-leaf"></i>
+                <h2>PlantSense</h2>
+                <p>Your AI-powered plant health companion</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="{{ url_for('analyzer') }}">Plant Analyzer</a></li>
+                        <li><a href="{{ url_for('library') }}">Plant Library</a></li>
+                        <li><a href="{{ url_for('guides') }}">Care Guides</a></li>
+                        <li><a href="{{ url_for('forum') }}">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="{{ url_for('about') }}">About Us</a></li>
+                        <li><a href="{{ url_for('team') }}">Our Team</a></li>
+                        <li><a href="{{ url_for('careers') }}">Careers</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Resources</h3>
+                   <ul>
+                        <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                        <li><a href="{{ url_for('faq') }}">FAQs</a></li>
+                        <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PlantSense. All rights reserved.</p>
+        </div>
+    </footer>
+
+<!--    <script src="script.js"></script>-->
+ <script src="{{ url_for('static', filename='js/final.js') }}"></script>
+
+</body>
+</html>
